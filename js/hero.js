@@ -1,13 +1,15 @@
-var gravity = 0;
-var limit_gravity = 20;
-var weight = 0.5;
-var jump_length = 200;
-var step_length = 40;
+var personaje = {
+  gravity: 0,
+  limit_gravity: 20,
+  weight: 0.5,
+  jump_length: 200,
+  step_length: 40
+};
 
 class Hero {
   constructor() {
     this.x = 0;
-    this.y = 300;
+    this.y = 25;
     this.width = 50;
     this.height = 96;
     this.image = new Image();
@@ -15,28 +17,32 @@ class Hero {
   }
 
   draw() {
-    this.y += gravity;
-    if (gravity < limit_gravity) gravity += weight;
+    this.y += personaje.gravity;
+    if (personaje.gravity < personaje.limit_gravity)
+      personaje.gravity += personaje.weight;
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   }
 
   jump() {
-    this.y -= jump_length;
+    this.y -= personaje.jump_length;
   }
 
   moveRight() {
     if (this.x <= canvas.width - this.width) {
-      this.x += step_length;
+      this.x += personaje.step_length;
     }
   }
 
   moveLeft() {
     if (this.x > this.width / 2) {
-      this.x -= step_length;
+      this.x -= personaje.step_length;
     }
   }
 
-  collisionsPlatform() {
-    if (this.y - this.width < level.height) return true;
+  collisionPlatform(platform) {
+    if (this.y + this.height < platform.y) {
+      return false;
+    }
+    return true;
   }
 }

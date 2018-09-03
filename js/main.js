@@ -15,7 +15,7 @@ function update() {
   frames++;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   fondo.draw();
-  level.draw();
+  level.platforms();
   hero.draw();
 }
 
@@ -29,6 +29,9 @@ addEventListener("keydown", function(e) {
       break;
     case 39:
       hero.moveRight();
+      break;
+    case 80:
+      clearInterval(interval);
       break;
   }
 });
