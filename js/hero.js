@@ -10,8 +10,8 @@ class Hero {
   constructor() {
     this.x = 0;
     this.y = 25;
-    this.width = 50;
-    this.height = 96;
+    this.width = 45;
+    this.height = 80;
     this.image = new Image();
     this.image.src = "./images/heroe/Idle__000.png";
   }
@@ -39,8 +39,12 @@ class Hero {
     }
   }
 
-  collisionPlatform(platform) {
-    if (this.y + this.height < platform.y) {
+  collisionPlatform(x, y) {
+    console.log(
+      `platform x: ${x}, hero x: ${this.x} platform y: ${y}, hero y: ${this.y}`
+    );
+
+    if ((this.y + this.height < y && this.x <= x) || this.x >= x) {
       return false;
     }
     return true;

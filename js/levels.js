@@ -48,14 +48,14 @@ class Level {
       this.y = elem.y;
       this.image = new Image();
       this.image.src = elem.imageSrc;
-      ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
       if (
-        hero.collisionPlatform(elem) &&
-        hero.y + hero.height < elem.y + personaje.gravity
+        hero.collisionPlatform(this.x, this.y) &&
+        hero.y + hero.height < this.y + personaje.gravity
       ) {
         personaje.gravity = 0;
-        hero.y = elem.y - hero.height;
+        hero.y = this.y - hero.height;
       }
+      ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
     });
   }
 }
