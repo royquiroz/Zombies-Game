@@ -1,13 +1,3 @@
-var personaje = {
-  gravity: 0,
-  limit_gravity: 20,
-  weight: 0.5,
-  jump_length: 150,
-  step_length: 64,
-  moves_sprite: 0,
-  sprite_x: 0
-};
-
 class Hero {
   constructor() {
     this.x = 0;
@@ -15,29 +5,41 @@ class Hero {
     this.width = 45;
     this.height = 80;
     this.image = new Image();
-    this.image.src = "./images/heroe/Idle__000.png";
+    this.image.src = "";
+
+    this.jumping = false;
+    this.gravity = 0;
+    this.limit_gravity = 20;
+    this.weight = 0.5;
+    this.jump_length = 150;
+    this.step_length = 10;
+    this.moves_sprite = 0;
+    this.sprite_x = 0;
   }
 
   draw() {
-    this.y += personaje.gravity;
-    if (personaje.gravity < personaje.limit_gravity)
-      personaje.gravity += personaje.weight;
+    this.y += this.gravity;
+    if (this.gravity < this.limit_gravity) this.gravity += this.weight;
+    this.image.src = `./images/heroe/Idle_${this.sprite_x}.png`;
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   }
 
   jump() {
-    this.y -= personaje.jump_length;
+    if (!this.jumping) {
+      this.jumping = true;
+      this.y -= this.jump_length;
+    }
   }
 
   moveRight() {
-    if (this.x <= 832) {
-      this.x += personaje.step_length;
+    if (this.x < canvas.width - this.width) {
+      this.x += this.step_length;
     }
   }
 
   moveLeft() {
-    if (this.x > this.width / 2) {
-      this.x -= personaje.step_length;
+    if (this.x > 0) {
+      this.x -= this.step_length;
     }
   }
 
@@ -45,22 +47,23 @@ class Hero {
     if (this.y + this.height <= y) {
       return false;
     }
-    if (this.x === x) {
+    if (this.x <= x + 64 && this.x >= x) {
+      //console.log(`ini: ${x} fin: ${x + 64}`);
+
       return true;
     }
   }
 
   animation() {
-    if (personaje.moves_sprite >= 1000) {
-      personaje.moves_sprite = 0;
+    if (this.moves_sprite >= 900) {
+      this.moves_sprite = 0;
     } else {
-      personaje.moves_sprite++;
+      this.moves_sprite += 10;
     }
 
-    for (let i = 0; i <= personaje.moves_sprite; i += 100) {
-      if (personaje.moves_sprite >= i) {
-        personaje.sprite_x = i;
-        console.log(personaje.sprite_x);
+    for (let i = 0; i <= this.moves_sprite; i += 100) {
+      if (this.moves_sprite >= i) {
+        this.sprite_x = i;
       }
     }
   }

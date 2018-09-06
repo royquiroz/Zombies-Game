@@ -53,9 +53,10 @@ class Level {
       this.image.src = elem.imageSrc;
       if (
         hero.collisionPlatform(this.x, this.y) &&
-        hero.y + hero.height < this.y + personaje.gravity
+        hero.y + hero.height < this.y + hero.gravity
       ) {
-        personaje.gravity = 0;
+        hero.gravity = 0;
+        hero.jumping = false;
         hero.y = this.y - hero.height;
       }
       ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
