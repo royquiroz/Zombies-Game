@@ -2,8 +2,10 @@ var personaje = {
   gravity: 0,
   limit_gravity: 20,
   weight: 0.5,
-  jump_length: 200,
-  step_length: 40
+  jump_length: 150,
+  step_length: 64,
+  moves_sprite: 0,
+  sprite_x: 0
 };
 
 class Hero {
@@ -28,7 +30,7 @@ class Hero {
   }
 
   moveRight() {
-    if (this.x <= canvas.width - this.width) {
+    if (this.x <= 832) {
       this.x += personaje.step_length;
     }
   }
@@ -40,13 +42,26 @@ class Hero {
   }
 
   collisionPlatform(x, y) {
-    console.log(
-      `platform x: ${x}, hero x: ${this.x} platform y: ${y}, hero y: ${this.y}`
-    );
-
-    if ((this.y + this.height < y && this.x <= x) || this.x >= x) {
+    if (this.y + this.height <= y) {
       return false;
     }
-    return true;
+    if (this.x === x) {
+      return true;
+    }
+  }
+
+  animation() {
+    if (personaje.moves_sprite >= 1000) {
+      personaje.moves_sprite = 0;
+    } else {
+      personaje.moves_sprite++;
+    }
+
+    for (let i = 0; i <= personaje.moves_sprite; i += 100) {
+      if (personaje.moves_sprite >= i) {
+        personaje.sprite_x = i;
+        console.log(personaje.sprite_x);
+      }
+    }
   }
 }

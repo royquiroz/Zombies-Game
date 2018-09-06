@@ -17,6 +17,7 @@ function update() {
   fondo.draw();
   level.platforms();
   hero.draw();
+  hero.animation();
 }
 
 addEventListener("keydown", function(e) {
