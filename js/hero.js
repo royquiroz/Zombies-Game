@@ -97,7 +97,7 @@ class Hero {
     if (this.moves_sprite >= 900) {
       this.moves_sprite = 0;
     } else {
-      this.moves_sprite += 10;
+      this.moves_sprite += 25;
     }
 
     for (let i = 0; i <= this.moves_sprite; i += 100) {
@@ -108,7 +108,7 @@ class Hero {
   }
 
   attack(x, y) {
-    if (this.attacking && this.x <= x + 90 && this.x >= x && this.y === y) {
+    if (this.attacking && this.x >= x + 90 && this.x <= x) {
       return true;
     }
     return false;

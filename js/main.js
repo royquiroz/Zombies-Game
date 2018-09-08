@@ -37,7 +37,7 @@ addEventListener("keydown", function(e) {
       break;
     case 65:
       hero.attacking = true;
-      hero.attack();
+      enemie.dead();
       break;
     case 80:
       clearInterval(interval);
@@ -57,7 +57,7 @@ addEventListener("keyup", function(e) {
       break;
     case 65:
       hero.attacking = false;
-      hero.attack();
+      enemie.dead();
       break;
   }
 });
