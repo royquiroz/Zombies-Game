@@ -23,16 +23,31 @@ function update() {
 addEventListener("keydown", function(e) {
   switch (e.keyCode) {
     case 37:
+      hero.run = true;
       hero.moveLeft();
       break;
     case 38:
       hero.jump();
       break;
     case 39:
+      hero.run = true;
       hero.moveRight();
       break;
     case 80:
       clearInterval(interval);
+      break;
+  }
+});
+
+addEventListener("keyup", function(e) {
+  switch (e.keyCode) {
+    case 37:
+      hero.run = false;
+      hero.moveLeft();
+      break;
+    case 39:
+      hero.run = false;
+      hero.moveRight();
       break;
   }
 });
