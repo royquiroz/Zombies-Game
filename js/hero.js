@@ -19,6 +19,7 @@ class Hero {
     this.run = false;
     this.moves_sprite = 0;
     this.sprite_x = 0;
+    this.attacking = false;
   }
 
   draw() {
@@ -50,6 +51,11 @@ class Hero {
       } else {
         this.image.src = `./images/heroe/left/Jump_${this.sprite_x}_left.png`;
       }
+    }
+
+    if (this.attacking && this.right) {
+      this.width = 90;
+      this.image.src = `./images/heroe/right/Attack_${this.sprite_x}_right.png`;
     }
 
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -99,5 +105,12 @@ class Hero {
         this.sprite_x = i;
       }
     }
+  }
+
+  attack(x, y) {
+    if (this.attacking && this.x <= x + 90 && this.x >= x && this.y === y) {
+      return true;
+    }
+    return false;
   }
 }

@@ -59,6 +59,16 @@ class Level {
         hero.jumping = false;
         hero.y = this.y - hero.height;
       }
+
+      if (
+        enemie.collisionPlatform(this.x, this.y) &&
+        enemie.y + enemie.height < this.y + enemie.gravity
+      ) {
+        enemie.gravity = 0;
+        enemie.jumping = false;
+        enemie.y = this.y - enemie.height;
+      }
+
       ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
     });
   }

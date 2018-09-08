@@ -6,6 +6,7 @@ var frames = 0;
 var fondo = new Background();
 var level = new Level();
 var hero = new Hero();
+var enemie = new Enemie();
 
 function start() {
   interval = setInterval(update, 1000 / 60);
@@ -18,6 +19,7 @@ function update() {
   level.platforms();
   hero.draw();
   hero.animation();
+  enemie.draw();
 }
 
 addEventListener("keydown", function(e) {
@@ -32,6 +34,10 @@ addEventListener("keydown", function(e) {
     case 39:
       hero.run = true;
       hero.moveRight();
+      break;
+    case 65:
+      hero.attacking = true;
+      hero.attack();
       break;
     case 80:
       clearInterval(interval);
@@ -48,6 +54,10 @@ addEventListener("keyup", function(e) {
     case 39:
       hero.run = false;
       hero.moveRight();
+      break;
+    case 65:
+      hero.attacking = false;
+      hero.attack();
       break;
   }
 });
