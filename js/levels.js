@@ -32,7 +32,8 @@ var map = [
   { imageSrc: "./images/tiles/Tile_16.png", x: 576, y: canvas.height - 256 },
   { imageSrc: "./images/tiles/Tile_14.png", x: 768, y: canvas.height - 192 },
   { imageSrc: "./images/tiles/Tile_15.png", x: 832, y: canvas.height - 192 },
-  { imageSrc: "./images/tiles/Tile_15.png", x: 896, y: canvas.height - 192 }
+  { imageSrc: "./images/tiles/Tile_15.png", x: 896, y: canvas.height - 192 },
+  { imageSrc: "./images/tiles/Tile_14.png", x: 896, y: canvas.height - 448 }
 ];
 
 class Level {
@@ -65,7 +66,6 @@ class Level {
         enemie.y + enemie.height < this.y + enemie.gravity
       ) {
         enemie.gravity = 0;
-        enemie.jumping = false;
         enemie.y = this.y - enemie.height;
       }
 

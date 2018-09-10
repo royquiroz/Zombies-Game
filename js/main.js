@@ -5,8 +5,8 @@ var frames = 0;
 
 var fondo = new Background();
 var level = new Level();
-var hero = new Hero();
 var enemie = new Enemie();
+var hero = new Hero();
 
 function start() {
   interval = setInterval(update, 1000 / 60);
@@ -19,7 +19,9 @@ function update() {
   level.platforms();
   hero.draw();
   hero.animation();
-  enemie.draw();
+  enemie.generateEnemies();
+  enemie.drawEnemies();
+  console.log(enemies);
 }
 
 addEventListener("keydown", function(e) {
@@ -49,15 +51,12 @@ addEventListener("keyup", function(e) {
   switch (e.keyCode) {
     case 37:
       hero.run = false;
-      hero.moveLeft();
       break;
     case 39:
       hero.run = false;
-      hero.moveRight();
       break;
     case 65:
       hero.attacking = false;
-      enemie.dead();
       break;
   }
 });

@@ -2,7 +2,7 @@ class Hero {
   constructor() {
     this.x = 0;
     this.y = 25;
-    this.width = 42;
+    this.width = 0;
     this.height = 80;
     this.image = new Image();
     this.image.src = "";
@@ -58,6 +58,11 @@ class Hero {
       this.image.src = `./images/heroe/right/Attack_${this.sprite_x}_right.png`;
     }
 
+    if (this.attacking && this.left) {
+      this.width = 90;
+      this.image.src = `./images/heroe/left/Attack_${this.sprite_x}_left.png`;
+    }
+
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   }
 
@@ -108,7 +113,12 @@ class Hero {
   }
 
   attack(x, y) {
-    if (this.attacking && this.x >= x + 90 && this.x <= x) {
+    if (
+      this.attacking &&
+      (this.x <= x + enemie.width + this.width &&
+        this.x >= x - enemie.width - this.width) &&
+      (this.y <= y + enemie.height + this.height && this.y >= y - this.height)
+    ) {
       return true;
     }
     return false;
