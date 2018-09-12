@@ -21,6 +21,7 @@ function update() {
   hero.animation();
   enemie.generateEnemies();
   enemie.drawEnemies();
+  enemie.animation();
   hero.points();
 }
 
@@ -50,13 +51,13 @@ addEventListener("keydown", function(e) {
 addEventListener("keyup", function(e) {
   switch (e.keyCode) {
     case 37:
-      hero.run = false;
+      hero.static();
       break;
     case 39:
-      hero.run = false;
+      hero.static();
       break;
     case 65:
-      hero.attacking = false;
+      hero.static();
       break;
   }
 });

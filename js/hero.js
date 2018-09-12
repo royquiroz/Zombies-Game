@@ -98,6 +98,11 @@ class Hero {
     }
   }
 
+  static() {
+    this.run = false;
+    this.attacking = false;
+  }
+
   animation() {
     if (this.moves_sprite >= 900) {
       this.moves_sprite = 0;

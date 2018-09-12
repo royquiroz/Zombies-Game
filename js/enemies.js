@@ -7,18 +7,21 @@ class Enemie {
     this.width = 60;
     this.height = 80;
     this.image = new Image();
-    this.image.src = "./images/enemies/left/Walk_0_left.png";
+    //this.image.src = "./images/enemies/left/Walk_0_left.png";
 
     /* Movimientos enemigos */
     this.gravity = 0;
     this.limit_gravity = 20;
     this.vel_y = 0.5;
+    this.moves_sprite = 0;
+    this.sprite_x = 0;
     this.isDead = false;
   }
 
   draw(zombie) {
     zombie.y += zombie.gravity;
     if (zombie.gravity < zombie.limit_gravity) zombie.gravity += zombie.vel_y;
+    zombie.image.src = `./images/enemies/left/Walk_${this.sprite_x}_left.png`;
     ctx.drawImage(
       zombie.image,
       zombie.x,
@@ -45,7 +48,6 @@ class Enemie {
     if (enemies.length < 15) {
       enemies.push(zombie);
     }
-    console.log(enemies);
   }
 
   drawEnemies() {
@@ -58,9 +60,22 @@ class Enemie {
     enemies.forEach(zombie => {
       if (hero.attack(zombie.x, zombie.y)) {
         zombie.dead = true;
+        enemies.splice([enemies.findIndex(e => e.dead === true)], 1);
       }
     });
+  }
 
-    enemies.splice([enemies.findIndex(e => e.dead == true)], 1);
+  animation() {
+    if (this.moves_sprite >= 900) {
+      this.moves_sprite = 0;
+    } else {
+      this.moves_sprite += 10;
+    }
+
+    for (let i = 0; i <= this.moves_sprite; i += 100) {
+      if (this.moves_sprite >= i) {
+        this.sprite_x = i;
+      }
+    }
   }
 }
