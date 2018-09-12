@@ -102,7 +102,7 @@ class Hero {
     if (this.moves_sprite >= 900) {
       this.moves_sprite = 0;
     } else {
-      this.moves_sprite += 25;
+      this.moves_sprite += 10;
     }
 
     for (let i = 0; i <= this.moves_sprite; i += 100) {
@@ -122,5 +122,10 @@ class Hero {
       return true;
     }
     return false;
+  }
+
+  points() {
+    ctx.font = "30px Avenir";
+    ctx.fillText(Math.round(frames / 100), canvas.width - 100, 40);
   }
 }

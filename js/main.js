@@ -9,7 +9,7 @@ var enemie = new Enemie();
 var hero = new Hero();
 
 function start() {
-  interval = setInterval(update, 1000 / 60);
+  interval = setInterval(update, 1000 / 100);
 }
 
 function update() {
@@ -21,7 +21,7 @@ function update() {
   hero.animation();
   enemie.generateEnemies();
   enemie.drawEnemies();
-  console.log(enemies);
+  hero.points();
 }
 
 addEventListener("keydown", function(e) {

@@ -13,43 +13,54 @@ class Enemie {
     this.gravity = 0;
     this.limit_gravity = 20;
     this.vel_y = 0.5;
-    this.desd = false;
+    this.isDead = false;
   }
 
-  draw(x, y) {
-    y += this.gravity;
-    if (this.gravity < this.limit_gravity) this.gravity += this.vel_y;
-    ctx.drawImage(this.image, x, y, this.width, this.height);
+  draw(zombie) {
+    zombie.y += zombie.gravity;
+    if (zombie.gravity < zombie.limit_gravity) zombie.gravity += zombie.vel_y;
+    ctx.drawImage(
+      zombie.image,
+      zombie.x,
+      zombie.y,
+      zombie.width,
+      zombie.height
+    );
   }
 
-  collisionPlatform(x, y) {
-    if (this.y + this.height <= y) {
+  collisionPlatform(x, y, zombie) {
+    if (zombie.y + zombie.height <= y) {
       return false;
     }
-    if (this.x <= x + 64 && this.x >= x) {
+    if (zombie.x <= x + 64 && zombie.x >= x) {
       return true;
     }
   }
 
   generateEnemies() {
     if (!(frames % 200 === 0)) return;
-    var posicionX = Math.floor(Math.random() * (canvas.width - 1) + 1);
-    var posicionY = Math.floor(Math.random() * (canvas.height - 1) + 1);
+    var posicionX = Math.floor(Math.random() * (960 - 1) + 1);
+    var posicionY = -25;
     var zombie = new Enemie(posicionX, posicionY);
     if (enemies.length < 15) {
       enemies.push(zombie);
     }
+    console.log(enemies);
   }
 
   drawEnemies() {
     enemies.forEach(zombie => {
-      this.draw(zombie.x, zombie.y);
+      this.draw(zombie);
     });
   }
 
   dead() {
-    if (hero.attack(this.x, this.y)) {
-      console.log("Muerto");
-    }
+    enemies.forEach(zombie => {
+      if (hero.attack(zombie.x, zombie.y)) {
+        zombie.dead = true;
+      }
+    });
+
+    enemies.splice([enemies.findIndex(e => e.dead == true)], 1);
   }
 }
