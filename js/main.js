@@ -9,13 +9,14 @@ var enemie = new Enemie();
 var hero = new Hero();
 
 function start() {
-  interval = setInterval(update, 1000 / 100);
+  interval = setInterval(update, 1000 / 60);
 }
 
 function update() {
   frames++;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   fondo.draw();
+  hero.lifes();
   level.platforms();
   hero.draw();
   hero.animation();

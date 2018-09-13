@@ -16,12 +16,36 @@ class Enemie {
     this.moves_sprite = 0;
     this.sprite_x = 0;
     this.isDead = false;
+    this.step_length = 0.2;
+    this.left = true;
+    this.right = false;
   }
 
   draw(zombie) {
+    this.image = new Image();
     zombie.y += zombie.gravity;
     if (zombie.gravity < zombie.limit_gravity) zombie.gravity += zombie.vel_y;
-    zombie.image.src = `./images/enemies/left/Walk_${this.sprite_x}_left.png`;
+
+    if (zombie.left) {
+      zombie.image.src = `./images/enemies/left/Walk_${this.sprite_x}_left.png`;
+      zombie.x -= this.step_length;
+      if (hero.x > zombie.x) {
+        zombie.left = false;
+        zombie.right = true;
+      }
+    }
+
+    if (zombie.right) {
+      zombie.image.src = `./images/enemies/right/Walk_${
+        this.sprite_x
+      }_right.png`;
+      zombie.x += this.step_length;
+      if (hero.x < zombie.x) {
+        zombie.left = true;
+        zombie.right = false;
+      }
+    }
+
     ctx.drawImage(
       zombie.image,
       zombie.x,
@@ -35,7 +59,7 @@ class Enemie {
     if (zombie.y + zombie.height <= y) {
       return false;
     }
-    if (zombie.x <= x + 64 && zombie.x >= x) {
+    if (zombie.x <= x + 64 && zombie.x >= x - 64 / 2) {
       return true;
     }
   }
@@ -43,7 +67,7 @@ class Enemie {
   generateEnemies() {
     if (!(frames % 200 === 0)) return;
     var posicionX = Math.floor(Math.random() * (960 - 1) + 1);
-    var posicionY = -25;
+    var posicionY = -30;
     var zombie = new Enemie(posicionX, posicionY);
     if (enemies.length < 15) {
       enemies.push(zombie);
@@ -53,6 +77,9 @@ class Enemie {
   drawEnemies() {
     enemies.forEach(zombie => {
       this.draw(zombie);
+      if (hero.dead(zombie)) {
+        setTimeout(fondo.gameOver(), 5000);
+      }
     });
   }
 
@@ -69,7 +96,7 @@ class Enemie {
     if (this.moves_sprite >= 900) {
       this.moves_sprite = 0;
     } else {
-      this.moves_sprite += 10;
+      this.moves_sprite += 15;
     }
 
     for (let i = 0; i <= this.moves_sprite; i += 100) {

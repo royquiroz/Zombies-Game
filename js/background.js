@@ -6,9 +6,17 @@ class Background {
     this.height = canvas.height;
     this.image = new Image();
     this.image.src = "./images/background/bg.png";
+    this.game_over = new Image();
+    this.game_over.src = "./images/background/game_over.png";
   }
 
   draw() {
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+  }
+
+  gameOver() {
+    clearInterval(interval);
+    interval = undefined;
+    ctx.drawImage(this.game_over, this.x, this.y, this.width, this.height);
   }
 }

@@ -23,6 +23,7 @@ class Hero {
   }
 
   draw() {
+    this.image = new Image();
     this.y += this.gravity;
     if (this.gravity < this.limit_gravity) this.gravity += this.vel_y;
 
@@ -55,12 +56,12 @@ class Hero {
 
     if (this.attacking && this.right) {
       this.width = 90;
-      this.image.src = `./images/heroe/right/Attack_${this.sprite_x}_right.png`;
+      this.image.src = `./images/heroe/right/Attack_600_right.png`;
     }
 
     if (this.attacking && this.left) {
       this.width = 90;
-      this.image.src = `./images/heroe/left/Attack_${this.sprite_x}_left.png`;
+      this.image.src = `./images/heroe/left/Attack_600_left.png`;
     }
 
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -93,7 +94,7 @@ class Hero {
     if (this.y + this.height <= y) {
       return false;
     }
-    if (this.x <= x + 64 && this.x >= x) {
+    if (this.x >= x - 64 / 2 && this.x <= x + 64) {
       return true;
     }
   }
@@ -107,7 +108,7 @@ class Hero {
     if (this.moves_sprite >= 900) {
       this.moves_sprite = 0;
     } else {
-      this.moves_sprite += 10;
+      this.moves_sprite += 30;
     }
 
     for (let i = 0; i <= this.moves_sprite; i += 100) {
@@ -131,6 +132,21 @@ class Hero {
 
   points() {
     ctx.font = "30px Avenir";
-    ctx.fillText(Math.round(frames / 100), canvas.width - 100, 40);
+    ctx.fillStyle = "white";
+    ctx.fillText(Math.round(frames / 100), canvas.width - 50, 40);
+  }
+
+  lifes() {
+    this.image.src = "./images/background/brain.png";
+    ctx.drawImage(this.image, 320, 20, 25, 25);
+  }
+
+  dead(item) {
+    return (
+      this.x < item.x + item.width &&
+      this.x + this.width > item.x &&
+      this.y < item.y + item.height &&
+      this.y + this.height > item.y
+    );
   }
 }
