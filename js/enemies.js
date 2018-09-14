@@ -78,7 +78,9 @@ class Enemie {
     enemies.forEach(zombie => {
       this.draw(zombie);
       if (hero.dead(zombie)) {
+        //if (hero.total_lifes === 0) {
         fondo.gameOver();
+        //}
       }
     });
   }

@@ -5,7 +5,7 @@ class Hero {
     this.width = 0;
     this.height = 80;
     this.image = new Image();
-    this.image.src = "";
+    //this.image.src = "";
     this.total_lifes = 3;
     this.total_points = 0;
 
@@ -130,13 +130,6 @@ class Hero {
       return true;
     }
     return false;
-  }
-
-  lifes() {
-    this.image.src = "./images/background/brain.png";
-    for (let i = 0; i < this.lifes; i++) {
-      ctx.drawImage(this.image, 320, 20, 25, 25);
-    }
   }
 
   dead(item) {

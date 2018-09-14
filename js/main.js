@@ -17,7 +17,7 @@ function update() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   fondo.draw();
   fondo.timer();
-  hero.lifes();
+  fondo.lifes();
   level.platforms();
   hero.draw();
   hero.animation();
