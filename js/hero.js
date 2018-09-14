@@ -6,6 +6,8 @@ class Hero {
     this.height = 80;
     this.image = new Image();
     this.image.src = "";
+    this.total_lifes = 3;
+    this.total_points = 0;
 
     /* Movimientos personaje */
     this.jumping = false;
@@ -130,15 +132,11 @@ class Hero {
     return false;
   }
 
-  points() {
-    ctx.font = "30px Avenir";
-    ctx.fillStyle = "white";
-    ctx.fillText(Math.round(frames / 100), canvas.width - 50, 40);
-  }
-
   lifes() {
     this.image.src = "./images/background/brain.png";
-    ctx.drawImage(this.image, 320, 20, 25, 25);
+    for (let i = 0; i < this.lifes; i++) {
+      ctx.drawImage(this.image, 320, 20, 25, 25);
+    }
   }
 
   dead(item) {

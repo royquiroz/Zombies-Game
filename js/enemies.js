@@ -78,7 +78,7 @@ class Enemie {
     enemies.forEach(zombie => {
       this.draw(zombie);
       if (hero.dead(zombie)) {
-        setTimeout(fondo.gameOver(), 5000);
+        fondo.gameOver();
       }
     });
   }
@@ -88,6 +88,8 @@ class Enemie {
       if (hero.attack(zombie.x, zombie.y)) {
         zombie.dead = true;
         enemies.splice([enemies.findIndex(e => e.dead === true)], 1);
+        hero.total_points += 5;
+        return true;
       }
     });
   }

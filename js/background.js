@@ -14,6 +14,12 @@ class Background {
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   }
 
+  timer() {
+    ctx.font = "30px Avenir";
+    ctx.fillStyle = "white";
+    ctx.fillText(60 - Math.round(frames / 60), canvas.width - 50, 40);
+  }
+
   gameOver() {
     clearInterval(interval);
     interval = undefined;

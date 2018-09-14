@@ -16,6 +16,7 @@ function update() {
   frames++;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   fondo.draw();
+  fondo.timer();
   hero.lifes();
   level.platforms();
   hero.draw();
@@ -23,7 +24,6 @@ function update() {
   enemie.generateEnemies();
   enemie.drawEnemies();
   enemie.animation();
-  hero.points();
 }
 
 addEventListener("keydown", function(e) {
