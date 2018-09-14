@@ -10,6 +10,7 @@ class Background {
     this.game_over.src = "./images/background/game_over.png";
     this.image_lifes = new Image();
     this.image_lifes.src = "./images/background/brain.png";
+    this.time = 60;
   }
 
   draw() {
@@ -19,7 +20,13 @@ class Background {
   timer() {
     ctx.font = "30px Avenir";
     ctx.fillStyle = "white";
-    ctx.fillText(60 - Math.round(frames / 60), canvas.width - 50, 40);
+    ctx.fillText(this.time - Math.round(frames / 60), canvas.width - 50, 40);
+  }
+
+  points() {
+    ctx.font = "30px Avenir";
+    ctx.fillStyle = "white";
+    ctx.fillText(`Puntos: ${hero.total_points}`, 520, 40);
   }
 
   lifes() {

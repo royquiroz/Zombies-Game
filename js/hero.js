@@ -12,10 +12,12 @@ class Hero {
     /* Movimientos personaje */
     this.jumping = false;
     this.gravity = 0;
-    this.limit_gravity = 20;
-    this.vel_y = 0.5;
-    this.jump_length = 150;
-    this.step_length = 10;
+    this.limit_gravity = 5;
+    this.vel_y = 10;
+    this.vel_x = 30;
+    this.friction = 0.9;
+    this.jump_length = 200;
+    this.step_length = 30;
     this.right = true;
     this.left = false;
     this.run = false;
@@ -27,7 +29,7 @@ class Hero {
   draw() {
     this.image = new Image();
     this.y += this.gravity;
-    if (this.gravity < this.limit_gravity) this.gravity += this.vel_y;
+    if (this.gravity < this.limit_gravity) this.gravity += this.friction;
 
     this.width = 42;
 
@@ -50,9 +52,9 @@ class Hero {
     if (this.jumping) {
       this.width = 60;
       if (this.right) {
-        this.image.src = `./images/heroe/right/Jump_${this.sprite_x}_right.png`;
+        this.image.src = `./images/heroe/right/Jump_200_right.png`;
       } else {
-        this.image.src = `./images/heroe/left/Jump_${this.sprite_x}_left.png`;
+        this.image.src = `./images/heroe/left/Jump_200_left.png`;
       }
     }
 
@@ -69,10 +71,17 @@ class Hero {
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   }
 
-  jump() {
+  jump(e) {
     if (!this.jumping) {
       this.jumping = true;
-      this.y -= this.jump_length + this.vel_y;
+      this.y -= this.jump_length + this.friction;
+      console.log(e);
+      if (e === 37) {
+        this.x -= this.vel_x * this.friction;
+      }
+      if (e === 39) {
+        this.x -= this.vel_x * this.friction;
+      }
     }
   }
 
@@ -80,7 +89,7 @@ class Hero {
     if (this.x < canvas.width - this.width) {
       this.right = true;
       this.left = false;
-      this.x += this.step_length;
+      this.x += this.vel_x * this.friction;
     }
   }
 
@@ -88,7 +97,7 @@ class Hero {
     if (this.x > 0) {
       this.left = true;
       this.right = false;
-      this.x -= this.step_length;
+      this.x -= this.vel_x * this.friction;
     }
   }
 
@@ -110,7 +119,7 @@ class Hero {
     if (this.moves_sprite >= 900) {
       this.moves_sprite = 0;
     } else {
-      this.moves_sprite += 30;
+      this.moves_sprite += 100;
     }
 
     for (let i = 0; i <= this.moves_sprite; i += 100) {

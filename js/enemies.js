@@ -16,7 +16,7 @@ class Enemie {
     this.moves_sprite = 0;
     this.sprite_x = 0;
     this.isDead = false;
-    this.step_length = 0.2;
+    this.step_length = 1.5;
     this.left = true;
     this.right = false;
   }
@@ -65,7 +65,7 @@ class Enemie {
   }
 
   generateEnemies() {
-    if (!(frames % 200 === 0)) return;
+    if (!(frames % 150 === 0)) return;
     var posicionX = Math.floor(Math.random() * (960 - 1) + 1);
     var posicionY = -30;
     var zombie = new Enemie(posicionX, posicionY);
@@ -100,7 +100,7 @@ class Enemie {
     if (this.moves_sprite >= 900) {
       this.moves_sprite = 0;
     } else {
-      this.moves_sprite += 15;
+      this.moves_sprite += 100;
     }
 
     for (let i = 0; i <= this.moves_sprite; i += 100) {

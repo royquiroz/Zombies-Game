@@ -18,6 +18,7 @@ function update() {
   fondo.draw();
   fondo.timer();
   fondo.lifes();
+  fondo.points();
   level.platforms();
   hero.draw();
   hero.animation();
@@ -33,7 +34,7 @@ addEventListener("keydown", function(e) {
       hero.moveLeft();
       break;
     case 38:
-      hero.jump();
+      hero.jump(e.keyCode);
       break;
     case 39:
       hero.run = true;
