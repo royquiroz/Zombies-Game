@@ -29,6 +29,9 @@ function update() {
 
 addEventListener("keydown", function(e) {
   switch (e.keyCode) {
+    case 13:
+      start();
+      break;
     case 37:
       hero.run = true;
       hero.moveLeft();
@@ -64,4 +67,4 @@ addEventListener("keyup", function(e) {
   }
 });
 
-start();
+//start();

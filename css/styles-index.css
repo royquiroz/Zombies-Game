@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  text-align: center;
+  background: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/jFnaQEy/zombie-hands-reaching-sky-with-with-the-moon-in-background-loop-ready-animation-of-moving-arms-that-protrude-from-the-ground_sjioqbdv__F0000.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+h1,
+h2 {
+  color: #a70909;
+  margin: 2% 0% 2% 0%;
+  letter-spacing: 1px;
+  font-family: creepster, sans-serif;
+  font-size: 100px;
+  text-shadow: -5px 5px #000000;
+}
+
+img.gif {
+  border-radius: 50px 50px 50px 50px;
+  border: 10px solid #000000;
+}
+
+.boton {
+  margin: 2.5%;
+  width: 15%;
+}

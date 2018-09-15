@@ -6,7 +6,7 @@ class Hero {
     this.height = 80;
     this.image = new Image();
     //this.image.src = "";
-    this.total_lifes = 3;
+    //this.total_lives = 3;
     this.total_points = 0;
 
     /* Movimientos personaje */
@@ -14,7 +14,7 @@ class Hero {
     this.gravity = 0;
     this.limit_gravity = 5;
     this.vel_y = 10;
-    this.vel_x = 30;
+    this.vel_x = 15;
     this.friction = 0.9;
     this.jump_length = 200;
     this.step_length = 30;
@@ -89,7 +89,7 @@ class Hero {
     if (this.x < canvas.width - this.width) {
       this.right = true;
       this.left = false;
-      this.x += this.vel_x * this.friction;
+      this.x += this.vel_x;
     }
   }
 
@@ -97,7 +97,7 @@ class Hero {
     if (this.x > 0) {
       this.left = true;
       this.right = false;
-      this.x -= this.vel_x * this.friction;
+      this.x -= this.vel_x;
     }
   }
 

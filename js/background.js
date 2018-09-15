@@ -20,6 +20,9 @@ class Background {
   timer() {
     ctx.font = "30px Avenir";
     ctx.fillStyle = "white";
+    if (this.time - Math.round(frames / 60) <= 0) {
+      fondo.gameOver();
+    }
     ctx.fillText(this.time - Math.round(frames / 60), canvas.width - 50, 40);
   }
 
