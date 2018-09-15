@@ -26,51 +26,6 @@ class Hero {
     this.attacking = false;
   }
 
-  draw() {
-    this.image = new Image();
-    this.y += this.gravity;
-    if (this.gravity < this.limit_gravity) this.gravity += this.friction;
-
-    this.width = 42;
-
-    if (this.right) {
-      this.image.src = `./images/heroe/right/Idle_${this.sprite_x}_right.png`;
-    } else {
-      this.image.src = `./images/heroe/left/Idle_${this.sprite_x}_left.png`;
-    }
-
-    if (this.run && this.left) {
-      this.width = 60;
-      this.image.src = `./images/heroe/left/Run_${this.sprite_x}_left.png`;
-    }
-
-    if (this.run && this.right) {
-      this.width = 60;
-      this.image.src = `./images/heroe/right/Run_${this.sprite_x}_right.png`;
-    }
-
-    if (this.jumping) {
-      this.width = 60;
-      if (this.right) {
-        this.image.src = `./images/heroe/right/Jump_200_right.png`;
-      } else {
-        this.image.src = `./images/heroe/left/Jump_200_left.png`;
-      }
-    }
-
-    if (this.attacking && this.right) {
-      this.width = 90;
-      this.image.src = `./images/heroe/right/Attack_600_right.png`;
-    }
-
-    if (this.attacking && this.left) {
-      this.width = 90;
-      this.image.src = `./images/heroe/left/Attack_600_left.png`;
-    }
-
-    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-  }
-
   jump(e) {
     if (!this.jumping) {
       this.jumping = true;
@@ -148,5 +103,50 @@ class Hero {
       this.y < item.y + item.height &&
       this.y + this.height > item.y
     );
+  }
+
+  draw() {
+    this.image = new Image();
+    this.y += this.gravity;
+    if (this.gravity < this.limit_gravity) this.gravity += this.friction;
+
+    this.width = 42;
+
+    if (this.right) {
+      this.image.src = `./images/heroe/right/Idle_${this.sprite_x}_right.png`;
+    } else {
+      this.image.src = `./images/heroe/left/Idle_${this.sprite_x}_left.png`;
+    }
+
+    if (this.run && this.left) {
+      this.width = 60;
+      this.image.src = `./images/heroe/left/Run_${this.sprite_x}_left.png`;
+    }
+
+    if (this.run && this.right) {
+      this.width = 60;
+      this.image.src = `./images/heroe/right/Run_${this.sprite_x}_right.png`;
+    }
+
+    if (this.jumping) {
+      this.width = 60;
+      if (this.right) {
+        this.image.src = `./images/heroe/right/Jump_200_right.png`;
+      } else {
+        this.image.src = `./images/heroe/left/Jump_200_left.png`;
+      }
+    }
+
+    if (this.attacking && this.right) {
+      this.width = 90;
+      this.image.src = `./images/heroe/right/Attack_600_right.png`;
+    }
+
+    if (this.attacking && this.left) {
+      this.width = 90;
+      this.image.src = `./images/heroe/left/Attack_600_left.png`;
+    }
+
+    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   }
 }

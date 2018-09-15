@@ -21,40 +21,6 @@ class Enemie {
     this.right = false;
   }
 
-  draw(zombie) {
-    this.image = new Image();
-    zombie.y += zombie.gravity;
-    if (zombie.gravity < zombie.limit_gravity) zombie.gravity += zombie.vel_y;
-
-    if (zombie.left) {
-      zombie.image.src = `./images/enemies/left/Walk_${this.sprite_x}_left.png`;
-      zombie.x -= this.step_length;
-      if (hero.x > zombie.x) {
-        zombie.left = false;
-        zombie.right = true;
-      }
-    }
-
-    if (zombie.right) {
-      zombie.image.src = `./images/enemies/right/Walk_${
-        this.sprite_x
-      }_right.png`;
-      zombie.x += this.step_length;
-      if (hero.x < zombie.x) {
-        zombie.left = true;
-        zombie.right = false;
-      }
-    }
-
-    ctx.drawImage(
-      zombie.image,
-      zombie.x,
-      zombie.y,
-      zombie.width,
-      zombie.height
-    );
-  }
-
   collisionPlatform(x, y, zombie) {
     if (zombie.y + zombie.height <= y) {
       return false;
@@ -109,5 +75,39 @@ class Enemie {
         this.sprite_x = i;
       }
     }
+  }
+
+  draw(zombie) {
+    this.image = new Image();
+    zombie.y += zombie.gravity;
+    if (zombie.gravity < zombie.limit_gravity) zombie.gravity += zombie.vel_y;
+
+    if (zombie.left) {
+      zombie.image.src = `./images/enemies/left/Walk_${this.sprite_x}_left.png`;
+      zombie.x -= this.step_length;
+      if (hero.x > zombie.x) {
+        zombie.left = false;
+        zombie.right = true;
+      }
+    }
+
+    if (zombie.right) {
+      zombie.image.src = `./images/enemies/right/Walk_${
+        this.sprite_x
+      }_right.png`;
+      zombie.x += this.step_length;
+      if (hero.x < zombie.x) {
+        zombie.left = true;
+        zombie.right = false;
+      }
+    }
+
+    ctx.drawImage(
+      zombie.image,
+      zombie.x,
+      zombie.y,
+      zombie.width,
+      zombie.height
+    );
   }
 }
